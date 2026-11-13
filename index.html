@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARMIENTO MEMORIES</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- PORTADA DE BIENVENIDA -->
+    <section id="pantalla-inicio" aria-label="Bienvenida a Sarmiento Memories">
+        <div class="portada-fondo"></div>
+        <div class="decoraciones-portada" aria-hidden="true">
+            <img class="foto-flotante foto-1" data-foto="balneario" src="imagenes/balneario.jpg" alt="">
+            <img class="foto-flotante foto-2" data-foto="cine" src="imagenes/cine.jpg" alt="">
+            <img class="foto-flotante foto-3" data-foto="elisa" src="imagenes/elisa.jpg" alt="">
+            <img class="foto-flotante foto-4" data-foto="bandera" src="imagenes/monumento.jpg" alt="">
+            <img class="foto-flotante foto-5" data-foto="museo" src="imagenes/museo.jpg" alt="">
+            <img class="foto-flotante foto-6" data-foto="plaza" src="imagenes/plaza.jpg" alt="">
+        </div>
+        <div class="contenido-portada">
+            <img class="imagen-portada" data-foto="portada" src="imagenes/capitansarmiento.jpg" alt="Vista de Capitán Sarmiento">
+            <p class="sello-portada">UN VIAJE POR NUESTRA HISTORIA</p>
+            <h1>SARMIENTO MEMORIES</h1>
+            <p class="texto-portada">Encuentra las parejas y descubre las historias que forman parte de nuestra memoria.</p>
+            <button id="empezar-juego" type="button">Empezar a jugar <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="pie-portada">Proyecto Educativo - Hecho por Iván M. Kearney - Todos los Derechos Reservados</p>
+        <div class="formas-portada forma-a" aria-hidden="true"></div>
+        <div class="formas-portada forma-b" aria-hidden="true"></div>
+    </section>
+
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+
+    <header>
+        <h1>SARMIENTO MEMORIES</h1>
+
+        <p>
+            Encuentra las parejas y descubre las historias
+            que forman parte de nuestra memoria.
+        </p>
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             INFORMACIÓN DEL JUEGO
+        ========================== -->
+
+        <section id="informacion-juego"
+                 aria-label="Información del juego">
+
+            <p>
+                Movimientos:
+                <span id="movimientos">0</span>
+            </p>
+
+            <p>
+                Parejas encontradas:
+                <span id="parejas-encontradas">0</span> / 6
+            </p>
+
+            <button id="reiniciar-juego" type="button">
+                Reiniciar juego
+            </button>
+
+
+        </section>
+
+        <div id="progreso-contenedor" role="progressbar"
+             aria-label="Progreso de parejas encontradas"
+             aria-valuemin="0" aria-valuemax="6" aria-valuenow="0">
+            <div id="progreso-barra"></div>
+        </div>
+        <p id="mensaje-dinamico" aria-live="polite"></p>
+
+        <!-- =========================
+             TABLERO DE MEMORIA
+        ========================== -->
+
+        <div class="zona-tablero">
+        <section id="tablero-memoria"
+                 aria-label="Tablero de imágenes">
+
+
+            <!-- PAREJA 1: BALNEARIO -->
+
+            <button class="carta"
+                    data-id="balneario"
+                    type="button"
+                    aria-label="Descubrir carta del balneario">
+
+                <img src="imagenes/balneario.jpg"
+                     alt="Balneario"
+                     loading="eager">
+            </button>
+
+            <button class="carta"
+                    data-id="balneario"
+                    type="button"
+                    aria-label="Descubrir carta del balneario">
+
+                <img src="imagenes/balneario.jpg"
+                     alt="Balneario"
+                     loading="eager">
+            </button>
+
+
+            <!-- PAREJA 2: CINE -->
+
+            <button class="carta"
+                    data-id="cine"
+                    type="button"
+                    aria-label="Descubrir carta del cine">
+
+                <img src="imagenes/cine.jpg"
+                     alt="Antiguo cine"
+                     loading="eager">
+            </button>
+
+            <button class="carta"
+                    data-id="cine"
+                    type="button"
+                    aria-label="Descubrir carta del cine">
+
+                <img src="imagenes/cine.jpg"
+                     alt="Antiguo cine"
+                     loading="eager">
+            </button>
+
+
+            <!-- PAREJA 3: ELISA -->
+
+            <button class="carta"
+                    data-id="elisa"
+                    type="button"
+                    aria-label="Descubrir carta de Elisa">
+
+                <img src="imagenes/elisa.jpg"
+                     alt="Palacio de La Elisa"
+                     loading="eager">
+            </button>
+
+            <button class="carta"
+                    data-id="elisa"
+                    type="button"
+                    aria-label="Descubrir carta de Elisa">
+
+                <img src="imagenes/elisa.jpg"
+                     alt="Palacio de La Elisa"
+                     loading="eager">
+            </button>
+
+
+            <!-- PAREJA 4: BANDERA BONAERENSE -->
+
+            <button class="carta"
+                    data-id="bandera"
+                    type="button"
+                    aria-label="Descubrir carta de la bandera bonaerense">
+
+                <img src="imagenes/monumento.jpg"
+                     alt="Bandera bonaerense"
+                     loading="eager">
+            </button>
+
+            <button class="carta"
+                    data-id="bandera"
+                    type="button"
+                    aria-label="Descubrir carta de la bandera bonaerense">
+
+                <img src="imagenes/monumento.jpg"
+                     alt="Bandera bonaerense"
+                     loading="eager">
+            </button>
+
+
+            <!-- PAREJA 5: MUSEO -->
+
+            <button class="carta"
+                    data-id="museo"
+                    type="button"
+                    aria-label="Descubrir carta del museo">
+
+                <img src="imagenes/museo.jpg"
+                     alt="Museo histórico"
+                     loading="eager">
+            </button>
+
+            <button class="carta"
+                    data-id="museo"
+                    type="button"
+                    aria-label="Descubrir carta del museo">
+
+                <img src="imagenes/museo.jpg"
+                     alt="Museo histórico"
+                     loading="eager">
+            </button>
+
+
+            <!-- PAREJA 6: PLAZA -->
+
+            <button class="carta"
+                    data-id="plaza"
+                    type="button"
+                    aria-label="Descubrir carta de la plaza">
+
+                <img src="imagenes/plaza.jpg"
+                     alt="Plaza de la ciudad"
+                     loading="eager">
+            </button>
+
+            <button class="carta"
+                    data-id="plaza"
+                    type="button"
+                    aria-label="Descubrir carta de la plaza">
+
+                <img src="imagenes/plaza.jpg"
+                     alt="Plaza de la ciudad"
+                     loading="eager">
+            </button>
+
+        </section>
+        </div>
+
+
+        <!-- =========================
+             VENTANA DE LAS HISTORIAS
+        ========================== -->
+
+        <dialog id="modal-historia"
+                aria-labelledby="titulo-historia">
+
+            <!-- Botón para cerrar -->
+
+            <button id="cerrar-historia"
+                    type="button"
+                    aria-label="Cerrar historia">
+
+                &times;
+
+            </button>
+
+
+            <!-- Imagen de la historia -->
+
+            <img id="imagen-historia"
+                 src=""
+                 alt="Imagen histórica">
+
+
+            <!-- Título dinámico -->
+
+            <h2 id="titulo-historia">
+                Historia de la imagen
+            </h2>
+
+
+            <!-- Texto dinámico -->
+
+            <div id="contenido-historia">
+
+                <p id="texto-historia">
+                    Aquí aparecerá la historia de la pareja encontrada.
+                </p>
+
+            </div>
+
+
+            <!-- Continuar jugando -->
+
+            <button id="continuar-juego" type="button">
+                Continuar jugando
+            </button>
+
+        </dialog>
+
+
+        <!-- =========================
+             FINAL DEL JUEGO
+        ========================== -->
+
+        <section id="mensaje-final"
+                 aria-live="polite"
+                 hidden>
+
+            <!-- Fuegos artificiales (detrás de la tarjeta) -->
+            <canvas id="lienzo-fuegos" aria-hidden="true"></canvas>
+
+            <div class="final-tarjeta">
+
+                <img id="imagen-final"
+                     src="imagenes/capitansarmiento2.jpg"
+                     alt="Fotografía completa del Capitán Sarmiento">
+
+                <p class="final-corona" aria-hidden="true">🏆</p>
+
+                <h2 id="titulo-final">¡Felicitaciones!</h2>
+
+                <p class="final-mensaje">
+                    ¡Lo lograste! Encontraste las seis parejas y recorriste
+                    seis historias de nuestra memoria.
+                </p>
+
+                <p class="final-detalle">
+                    Armaste el rompecabezas en
+                    <strong id="movimientos-final">0</strong> movimientos.
+                </p>
+
+                <p class="final-gracias">
+                    Gracias por recorrer con nosotros la historia de
+                    Capitán Sarmiento. 💙
+                </p>
+
+                <button id="jugar-de-nuevo" type="button">
+                    Volver a jugar
+                </button>
+
+            </div>
+
+            <!-- Serpentinas y papelitos (por delante de la tarjeta) -->
+            <canvas id="lienzo-cintas" aria-hidden="true"></canvas>
+
+        </section>
+
+        <section id="mensaje-limite" hidden aria-live="polite">
+            <h2>¡Se terminaron los movimientos!</h2>
+            <p>¡Probá otra vez y descubrí todas las parejas!</p>
+            <button id="reintentar-limite" type="button">Volver a jugar</button>
+        </section>
+
+    </main>
+
+    <footer class="pie-juego">
+        <p>Proyecto Educativo - Hecho por Iván M. Kearney - Todos los Derechos Reservados</p>
+    </footer>
+
+
+    <!-- Botón para silenciar / activar la música (aparece al empezar a jugar) -->
+    <button id="control-sonido" type="button" hidden
+            aria-pressed="false" aria-label="Silenciar la música">🔊</button>
+
+    <!-- =========================
+         CONEXIÓN CON JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

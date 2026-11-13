@@ -1,0 +1,1688 @@
+
+/* ==========================================
+   SARMIENTO MEMORY
+   CSS COMPLETO Y RESPONSIVE
+========================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --azul-francia: #367BFF;
+    --azul-profundo: #142B5F;
+    --azul-oscuro: #203F83;
+    --celeste: #25D9C3;
+    --blanco: #FFFFFF;
+    --dorado: #FFD166;
+    --texto: #183153;
+    --violeta: #8B5CF6;
+    --fondo-carta: #2456B8;
+    --borde-claro: #B9F7EF;
+    --panel: rgba(20, 43, 95, 0.92);
+    --sombra: rgba(0, 0, 0, 0.30);
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    color-scheme: light;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--blanco);
+    background-color: var(--azul-profundo);
+    background-image: url("imagenes/capitansarmiento.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 12px 30px;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+button:focus-visible {
+    outline: 3px solid var(--dorado);
+    outline-offset: 4px;
+}
+
+/* ENCABEZADO */
+
+header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+header h1 {
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    color: var(--blanco);
+    text-shadow:
+        0 3px 5px rgba(0, 0, 0, 0.85),
+        0 0 16px rgba(54, 123, 255, 0.65);
+}
+
+header p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    line-height: 1.5;
+    color: var(--blanco);
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.95),
+        0 0 8px rgba(0, 0, 0, 0.55);
+}
+
+/* CONTENEDOR PRINCIPAL */
+
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* INFORMACIÓN DEL JUEGO */
+
+#informacion-juego {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding: 10px;
+    background: var(--panel);
+    border: 1px solid var(--celeste);
+    border-radius: 14px;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.25),
+        0 0 12px rgba(37, 217, 195, 0.12);
+}
+
+#informacion-juego p {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--blanco);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 9px;
+}
+
+#movimientos,
+#parejas-encontradas {
+    margin-left: 4px;
+    color: var(--dorado);
+    font-weight: 900;
+}
+
+/* BOTONES */
+
+#reiniciar-juego,
+#continuar-juego,
+#jugar-de-nuevo {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 44px;
+    padding: 9px 16px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#reiniciar-juego,
+#jugar-de-nuevo {
+    color: var(--azul-profundo);
+    background: linear-gradient(135deg, #FFE08A, #FFB84D);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+}
+
+#reiniciar-juego:hover,
+#jugar-de-nuevo:hover {
+    background: linear-gradient(135deg, #FFF0B8, #FFD166);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.3);
+}
+
+#continuar-juego {
+    min-width: 160px;
+    color: var(--blanco);
+    background: linear-gradient(135deg, #367BFF, #6548E8);
+    box-shadow: 0 4px 12px rgba(54, 123, 255, 0.22);
+}
+
+#continuar-juego:hover {
+    background: linear-gradient(135deg, #245FE0, #5034D1);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(54, 123, 255, 0.3);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* TABLERO: SEIS COLUMNAS Y DOS FILAS */
+
+#tablero-memoria {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-flow: row;
+    gap: clamp(6px, 1.2vw, 12px);
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 16px;
+    justify-content: center;
+    align-items: stretch;
+    perspective: 1000px;
+}
+
+
+/* VENTANA DE HISTORIAS */
+
+#modal-historia {
+    position: fixed;
+    width: min(90%, 560px);
+    max-height: 85vh;
+    max-height: 85dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin: auto;
+    padding: 24px;
+    border: 2px solid var(--celeste);
+    border-radius: 20px;
+    color: var(--texto);
+    background: linear-gradient(160deg, #FFFFFF, #E7F4FF);
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(37, 217, 195, 0.15);
+    text-align: center;
+}
+
+#modal-historia[open] {
+    animation: aparecer-modal 0.3s ease both;
+}
+
+#modal-historia::backdrop {
+    background: rgba(5, 20, 48, 0.78);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+@keyframes aparecer-modal {
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#cerrar-historia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-bottom: 8px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #D9EBFA;
+    color: var(--azul-profundo);
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+#cerrar-historia:hover {
+    background: var(--celeste);
+    transform: rotate(5deg);
+}
+
+#imagen-historia {
+    display: block;
+    width: 100%;
+    max-height: 260px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 15px rgba(16, 42, 86, 0.2);
+}
+
+#titulo-historia {
+    color: var(--azul-oscuro);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    line-height: 1.25;
+    margin-bottom: 12px;
+}
+
+#contenido-historia {
+    text-align: left;
+    line-height: 1.75;
+    font-size: 0.96rem;
+    color: #344B67;
+    overflow-wrap: anywhere;
+    margin-bottom: 20px;
+}
+
+#contenido-historia p {
+    margin-bottom: 10px;
+}
+
+
+/* PIE DE PÁGINA */
+
+footer {
+    text-align: center;
+    padding: 10px 5px 0;
+    color: var(--blanco);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.95),
+        0 0 8px rgba(0, 0, 0, 0.55);
+}
+
+footer p:first-child {
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+
+/* TABLETS */
+
+@media (min-width: 601px) and (max-width: 900px) {
+    body {
+        padding: 12px 20px;
+        background-attachment: scroll;
+    }
+
+    #tablero-memoria {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px 12px;
+        background-attachment: scroll;
+        background-position: center top;
+    }
+
+    header {
+        margin-bottom: 12px;
+    }
+
+    header h1 {
+        font-size: clamp(1.3rem, 5.5vw, 1.9rem);
+        letter-spacing: 1px;
+        overflow-wrap: anywhere;
+    }
+
+    header p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    #informacion-juego {
+        gap: 6px;
+        padding: 8px;
+        margin-bottom: 12px;
+        border-radius: 11px;
+    }
+
+    #informacion-juego p {
+        font-size: 0.74rem;
+        padding: 7px;
+    }
+
+    #reiniciar-juego,
+    #continuar-juego,
+    #jugar-de-nuevo {
+        min-height: 42px;
+        padding: 8px 11px;
+        font-size: 0.76rem;
+    }
+
+    #tablero-memoria {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: clamp(3px, 1.2vw, 6px);
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 12px;
+    }
+
+
+    #modal-historia {
+        width: 94%;
+        max-height: 85vh;
+        max-height: 85dvh;
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    #cerrar-historia {
+        width: 44px;
+        height: 44px;
+    }
+
+    #imagen-historia {
+        max-height: 190px;
+        margin-bottom: 12px;
+    }
+
+    #titulo-historia {
+        font-size: 1.4rem;
+    }
+
+    #contenido-historia {
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+
+
+    footer {
+        padding-top: 8px;
+        font-size: 0.72rem;
+    }
+}
+
+/* CELULARES ESTRECHOS */
+
+@media (max-width: 380px) {
+    body {
+        padding: 8px;
+    }
+
+    header h1 {
+        font-size: 1.25rem;
+        letter-spacing: 0.5px;
+    }
+
+    header p {
+        font-size: 0.76rem;
+    }
+
+    #informacion-juego {
+        gap: 4px;
+        padding: 6px;
+    }
+
+    #informacion-juego p {
+        padding: 5px;
+        font-size: 0.67rem;
+    }
+
+    #reiniciar-juego,
+    #continuar-juego,
+    #jugar-de-nuevo {
+        padding: 7px 8px;
+        font-size: 0.7rem;
+    }
+
+    #tablero-memoria {
+        gap: 3px;
+    }
+
+
+    #modal-historia {
+        padding: 14px;
+    }
+
+    #titulo-historia {
+        font-size: 1.25rem;
+    }
+
+    #contenido-historia {
+        font-size: 0.86rem;
+    }
+}
+
+/* PANTALLAS BAJAS */
+
+@media (max-height: 750px) and (min-width: 601px) {
+    body {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    header {
+        margin-bottom: 8px;
+    }
+
+    header h1 {
+        font-size: clamp(1.3rem, 3vw, 2.3rem);
+        margin-bottom: 3px;
+    }
+
+    #informacion-juego {
+        margin-bottom: 8px;
+        padding: 7px;
+    }
+
+    #tablero-memoria {
+        margin-bottom: 8px;
+    }
+
+    footer {
+        padding-top: 4px;
+    }
+}
+
+/* ACCESIBILIDAD */
+
+
+/* CAPA EXTRA DE MOVIMIENTO E INTERACCION */
+#control-sonido, #reintentar-limite {
+    display:inline-flex; align-items:center; justify-content:center;
+    min-height:44px; padding:9px 16px; border:2px solid rgba(255,255,255,.35);
+    border-radius:10px; color:#fff;
+    background:linear-gradient(135deg,#167f91,#2456b8);
+    font-size:.88rem; font-weight:800; box-shadow:0 5px 14px rgba(0,0,0,.22);
+    transition:transform .2s ease,filter .2s ease,box-shadow .2s ease;
+}
+#control-sonido:hover, #reintentar-limite:hover {
+    transform:translateY(-3px) scale(1.025); filter:brightness(1.12);
+    box-shadow:0 8px 20px rgba(0,0,0,.28);
+}
+#progreso-contenedor {
+    width:min(100%,1100px); height:11px; margin:0 auto 9px; overflow:hidden;
+    border-radius:99px; background:rgba(255,255,255,.25);
+    box-shadow:inset 0 2px 4px rgba(0,0,0,.2);
+}
+#progreso-barra {
+    width:0; height:100%; border-radius:inherit;
+    background:linear-gradient(90deg,#25d9c3,#ffd166,#ff8fab);
+    box-shadow:0 0 12px rgba(255,209,102,.65);
+    transition:width .55s cubic-bezier(.2,.8,.2,1);
+}
+#mensaje-dinamico {
+    min-height:29px; margin:0 auto 7px; text-align:center; color:#fff;
+    font-size:clamp(.9rem,2vw,1.12rem); font-weight:900; letter-spacing:.3px;
+    text-shadow:0 2px 7px rgba(0,0,0,.75);
+}
+.mensaje-entra { animation:mensaje-pop .48s cubic-bezier(.2,1.5,.5,1) both; }
+@keyframes mensaje-pop {
+    0% {opacity:0;transform:translateY(12px) scale(.7)}
+    75% {opacity:1;transform:translateY(-2px) scale(1.08)}
+    100% {opacity:1;transform:translateY(0) scale(1)}
+}
+.confeti {
+    position:fixed; top:-18px; z-index:9999; width:9px; height:14px;
+    border-radius:2px; pointer-events:none;
+    animation:confeti-cae var(--duracion,2s) linear forwards;
+}
+@keyframes confeti-cae {
+    to {transform:translate3d(35px,110vh,0) rotate(var(--giro,360deg));opacity:0}
+}
+#mensaje-limite {
+    width:min(100%,700px); margin:24px auto; padding:28px 18px;
+    text-align:center; border:2px solid #ffd166; border-radius:20px;
+    background:rgba(20,43,95,.96); box-shadow:0 12px 35px rgba(0,0,0,.35);
+    animation:aparecer-final .5s ease both;
+}
+#mensaje-limite[hidden] {display:none}
+#mensaje-limite h2 {color:#ffd166;font-size:clamp(1.4rem,4vw,2rem);margin-bottom:10px}
+#mensaje-limite p {margin-bottom:16px;line-height:1.6}
+@media (max-width:600px) {
+    #control-sonido {min-height:42px;padding:8px 10px;font-size:.76rem}
+    #progreso-contenedor {height:9px;margin-bottom:7px}
+}
+@media (prefers-reduced-motion:reduce) {
+    .confeti {display:none}
+}
+
+/* PORTADA INICIAL: CAPITÁN SARMIENTO Y FOTOGRAFÍAS QUE CAEN */
+:root {
+    --azul-francia: #3157C8;
+    --azul-profundo: #182B55;
+    --azul-oscuro: #24458F;
+    --celeste: #54B8D2;
+    --blanco: #FFFDF7;
+    --dorado: #FFC857;
+    --texto: #263653;
+    --violeta: #8056A8;
+    --fondo-carta: #3157C8;
+    --borde-claro: #FFE3A3;
+    --panel: rgba(31, 53, 101, 0.93);
+    --sombra: rgba(21, 28, 50, 0.32);
+}
+
+body:not(.jugando) > header,
+body:not(.jugando) > main,
+body:not(.jugando) > footer {
+    visibility: hidden;
+}
+
+#pantalla-inicio {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    padding: 24px;
+    isolation: isolate;
+}
+#pantalla-inicio[hidden] { display: none; }
+.portada-fondo {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    background: linear-gradient(120deg, rgba(18,35,76,.72), rgba(22,42,83,.48)),
+                url("imagenes/capitansarmiento.jpg") center 48% / cover no-repeat;
+    transform: scale(1.04);
+    animation: fondo-respira 16s ease-in-out infinite alternate;
+}
+@keyframes fondo-respira { to { transform: scale(1.12); } }
+.contenido-portada {
+    position: relative;
+    z-index: 3;
+    width: min(520px, 92vw);
+    padding: 22px 26px 28px;
+    text-align: center;
+    color: #fffdf7;
+    background: rgba(24, 43, 85, .82);
+    border: 3px solid rgba(255, 200, 87, .95);
+    border-radius: 28px;
+    box-shadow: 0 22px 70px rgba(8, 16, 39, .48);
+    backdrop-filter: blur(7px);
+    animation: portada-entra .8s cubic-bezier(.2,.9,.3,1) both;
+}
+@keyframes portada-entra {
+    from { opacity: 0; transform: translateY(28px) scale(.94); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.imagen-portada {
+    width: 100%;
+    height: clamp(170px, 28vh, 260px);
+    object-fit: cover;
+    object-position: center;
+    border: 5px solid #fffdf7;
+    border-radius: 19px;
+    box-shadow: 0 9px 24px rgba(0,0,0,.32);
+}
+.sello-portada {
+    margin: 18px 0 6px;
+    color: #ffd36e;
+    font-size: .76rem;
+    font-weight: 900;
+    letter-spacing: 2.3px;
+}
+.contenido-portada h1 {
+    margin: 0 0 8px;
+    color: #fffdf7;
+    font-size: clamp(2rem, 5vw, 3.15rem);
+    line-height: 1.05;
+    font-weight: 950;
+    letter-spacing: 1.2px;
+    text-shadow: 0 4px 0 rgba(0,0,0,.16);
+}
+.texto-portada {
+    max-width: 390px;
+    margin: 0 auto 20px;
+    color: #fffdf7;
+    font-size: clamp(.9rem, 2vw, 1.04rem);
+    line-height: 1.5;
+}
+#empezar-juego {
+    min-height: 58px;
+    padding: 13px 30px;
+    border: 0;
+    border-radius: 999px;
+    color: #24345c;
+    background: linear-gradient(135deg, #ffd36e, #ff9e58);
+    box-shadow: 0 7px 0 #d97842, 0 13px 25px rgba(0,0,0,.28);
+    font-size: 1.08rem;
+    font-weight: 950;
+    letter-spacing: .3px;
+    transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+    animation: boton-late 2.2s ease-in-out infinite;
+}
+#empezar-juego span { display: inline-block; margin-left: 8px; font-size: 1.35em; vertical-align: -1px; }
+#empezar-juego:hover { transform: translateY(-4px) scale(1.035); filter: brightness(1.06); box-shadow: 0 10px 0 #d97842, 0 17px 28px rgba(0,0,0,.3); }
+@keyframes boton-late { 50% { box-shadow: 0 7px 0 #d97842, 0 13px 30px rgba(255,200,87,.28); } }
+.decoraciones-portada { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.foto-flotante {
+    position: absolute;
+    width: clamp(105px, 13vw, 170px);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    padding: 7px;
+    border: 2px solid #fffdf7;
+    border-radius: 15px;
+    background: #fffdf7;
+    box-shadow: 0 12px 28px rgba(0,0,0,.35);
+    animation: flotar-foto 4s ease-in-out infinite alternate;
+}
+.foto-1 { left: 7%; top: 12%; transform: rotate(-10deg); }
+.foto-2 { right: 8%; top: 13%; transform: rotate(9deg); animation-delay: -.8s; }
+.foto-3 { left: 4%; bottom: 13%; transform: rotate(8deg); animation-delay: -1.4s; }
+.foto-4 { right: 5%; bottom: 12%; transform: rotate(-8deg); animation-delay: -.5s; }
+.foto-5 { left: 25%; top: 5%; width: clamp(82px, 9vw, 120px); animation-delay: -1.8s; }
+.foto-6 { right: 25%; bottom: 5%; width: clamp(82px, 9vw, 120px); animation-delay: -1.1s; }
+@keyframes flotar-foto { to { margin-top: 12px; filter: saturate(1.12); } }
+.formas-portada { position: absolute; z-index: -1; border-radius: 50%; opacity: .9; }
+.forma-a { width: 180px; height: 180px; left: -55px; top: 38%; background: #e8795b; }
+.forma-b { width: 220px; height: 220px; right: -75px; top: 40%; background: #f5bd4e; }
+.portada-cayendo .contenido-portada { animation: portada-sale .7s ease forwards; }
+@keyframes portada-sale { to { opacity: 0; transform: scale(.88) translateY(-20px); } }
+
+#informacion-juego { border-color: #f5bd4e; background: rgba(29,48,91,.94); }
+#progreso-barra { background: linear-gradient(90deg, #e8795b, #f5bd4e, #54b8d2); }
+#continuar-juego { background: linear-gradient(135deg, #3157c8, #8056a8); }
+#reiniciar-juego, #jugar-de-nuevo, #reintentar-limite { color: #24345c; background: linear-gradient(135deg, #ffd36e, #ff9e58); }
+#mensaje-final, #mensaje-limite { border-color: #f5bd4e; }
+
+@media (max-width: 700px) {
+    #pantalla-inicio { padding: 16px; }
+    .contenido-portada { width: min(440px, 94vw); padding: 15px 17px 22px; }
+    .imagen-portada { height: clamp(145px, 23vh, 205px); }
+    .foto-flotante { width: clamp(72px, 18vw, 105px); padding: 4px; border-radius: 10px; }
+    .foto-1 { left: 1%; top: 5%; }
+    .foto-2 { right: 1%; top: 7%; }
+    .foto-3 { left: 1%; bottom: 5%; }
+    .foto-4 { right: 1%; bottom: 5%; }
+    .foto-5, .foto-6 { display: none; }
+    .forma-a, .forma-b { width: 100px; height: 100px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .portada-fondo, .contenido-portada, #empezar-juego, .foto-flotante { animation: none !important; }
+    .portada-cayendo .foto-flotante { opacity: 0; }
+}
+
+/* AJUSTES FINALES: identidad alegre, cálida y sin tonos neón */
+:root {
+    --azul-francia: #3267d6;
+    --azul-profundo: #23345f;
+    --azul-oscuro: #294d9b;
+    --celeste: #70c1d4;
+    --blanco: #fffaf0;
+    --dorado: #ffc857;
+    --texto: #293653;
+    --violeta: #9165a8;
+    --fondo-carta: #3267d6;
+    --borde-claro: #ffe2a6;
+    --panel: rgba(35, 52, 95, .94);
+}
+
+body {
+    background-color: #263b70;
+    background-image:
+        linear-gradient(135deg, rgba(35,52,95,.28), rgba(50,103,214,.18)),
+        url("imagenes/capitansarmiento.jpg");
+}
+
+#pantalla-inicio {
+    background: #263b70;
+}
+
+.portada-fondo {
+    background:
+        linear-gradient(120deg, rgba(27,43,83,.48), rgba(37,70,135,.24)),
+        url("imagenes/capitansarmiento.jpg") center 48% / cover no-repeat;
+}
+
+.contenido-portada {
+    width: min(590px, 92vw);
+    padding: 24px 28px 30px;
+    background: linear-gradient(145deg, rgba(38,59,112,.94), rgba(75,65,116,.91));
+    border: 4px solid #ffc857;
+    box-shadow: 0 24px 75px rgba(13,24,53,.5), 0 0 0 8px rgba(255,250,240,.12);
+}
+
+.imagen-portada {
+    height: clamp(230px, 34vh, 340px);
+    border: 6px solid #fffaf0;
+    border-radius: 22px;
+    box-shadow: 0 12px 28px rgba(10,20,45,.36);
+}
+
+.sello-portada { color: #ffd477; }
+.contenido-portada h1 { color: #fffaf0; }
+.texto-portada { color: #fffaf0; }
+
+#empezar-juego {
+    color: #26345a;
+    background: linear-gradient(135deg, #ffd36e 0%, #ffad66 55%, #ed8467 100%);
+    box-shadow: 0 7px 0 #c96d50, 0 13px 25px rgba(0,0,0,.28);
+}
+#empezar-juego:hover {
+    box-shadow: 0 10px 0 #c96d50, 0 17px 28px rgba(0,0,0,.3);
+}
+
+.foto-flotante {
+    border: 3px solid #fffaf0;
+    border-radius: 17px;
+    background: #fffaf0;
+    box-shadow: 0 14px 32px rgba(12,24,52,.4);
+}
+.foto-1 { left: 6%; top: 12%; transform: rotate(-11deg); }
+.foto-2 { right: 7%; top: 12%; transform: rotate(10deg); }
+.foto-3 { left: 5%; bottom: 12%; transform: rotate(9deg); }
+.foto-4 { right: 6%; bottom: 12%; transform: rotate(-9deg); }
+.foto-5 { left: 25%; top: 4%; transform: rotate(7deg); }
+.foto-6 { right: 25%; bottom: 4%; transform: rotate(-7deg); }
+
+
+#informacion-juego {
+    border-color: #ffc857;
+    background: linear-gradient(120deg, rgba(35,52,95,.97), rgba(67,65,112,.94));
+}
+#progreso-barra {
+    background: linear-gradient(90deg, #e98267, #ffc857, #70c1d4, #9165a8);
+}
+#continuar-juego { background: linear-gradient(135deg, #3267d6, #9165a8); }
+#reiniciar-juego, #jugar-de-nuevo, #reintentar-limite {
+    color: #26345a;
+    background: linear-gradient(135deg, #ffd36e, #ffad66);
+}
+#mensaje-final, #mensaje-limite { border-color: #ffc857; }
+
+@media (max-width: 700px) {
+    .contenido-portada { width: min(460px, 94vw); padding: 15px 17px 22px; }
+    .imagen-portada { height: clamp(185px, 28vh, 245px); }
+    .foto-1 { left: 1%; top: 4%; }
+    .foto-2 { right: 1%; top: 5%; }
+    .foto-3 { left: 1%; bottom: 4%; }
+    .foto-4 { right: 1%; bottom: 4%; }
+}
+
+
+/* ==========================================================
+   CARTAS EN 3D
+   .carta (botón) > .carta-escena (perspectiva) > .carta-giro (gira)
+   > .cara.dorso  +  .cara.frente (foto + pieza del rompecabezas)
+========================================================== */
+
+#tablero-memoria {
+    --radio-carta: clamp(5px, 1vw, 12px);
+    transition: gap 0.7s ease, box-shadow 0.6s ease;
+}
+
+#tablero-memoria.sin-transicion *,
+#tablero-memoria.sin-transicion *::before,
+#tablero-memoria.sin-transicion *::after {
+    transition: none !important;
+}
+
+.carta {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 3 / 4;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radio-carta);
+    background: transparent;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+    translate: 0 0;
+    transition: translate 0.25s ease;
+}
+
+.carta:disabled {
+    opacity: 1;
+    cursor: default;
+}
+
+.carta-escena {
+    position: absolute;
+    inset: 0;
+    display: block;
+    perspective: 800px;
+}
+
+.carta-giro {
+    position: absolute;
+    inset: 0;
+    display: block;
+    transform-style: preserve-3d;
+    /* un poquito de rebote al terminar de girar */
+    transition: transform 0.65s cubic-bezier(0.3, 1.35, 0.5, 1);
+}
+
+.carta.volteada .carta-giro,
+.carta.encontrada .carta-giro {
+    transform: rotateY(180deg);
+}
+
+.cara {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid #ffe0a0;
+    border-radius: var(--radio-carta);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    box-shadow:
+        0 7px 16px rgba(20, 30, 60, 0.35),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.14);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dorso {
+    background:
+        radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.32), transparent 45%),
+        linear-gradient(145deg, #3267d6 0%, #e98267 56%, #ffc857 100%);
+    color: #fff8e8;
+    font-size: clamp(1.1rem, 3.4vw, 2.6rem);
+    font-weight: 900;
+    text-shadow: 0 3px 8px rgba(20, 30, 60, 0.45);
+}
+
+.dorso::before {
+    content: "";
+    position: absolute;
+    inset: 7%;
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    border-radius: calc(var(--radio-carta) - 2px);
+}
+
+.frente {
+    transform: rotateY(180deg);
+    background: #fffaf0;
+}
+
+.frente img {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* pieza del rompecabezas (aparece cuando se descubre la pareja) */
+.pieza {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-image: url("imagenes/capitansarmiento2.jpg");
+    background-repeat: no-repeat;
+    background-size: var(--bg-w, 600%) var(--bg-h, 200%);
+    background-position: var(--px, 0%) var(--py, 0%);
+    opacity: 0;
+    transition: opacity 0.6s ease 0.25s;
+}
+
+.carta.es-pieza .pieza {
+    opacity: 1;
+}
+
+/* brillo que cruza la carta */
+.frente::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    bottom: -20%;
+    left: 0;
+    z-index: 3;
+    width: 55%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+    transform: translateX(-170%) skewX(-18deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ---------- movimiento de las cartas ---------- */
+
+@keyframes flota-carta {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -5px; }
+}
+
+.carta:not(.volteada):not(.encontrada) .carta-escena {
+    animation: flota-carta 3.2s ease-in-out infinite;
+}
+.carta:nth-child(2n):not(.volteada):not(.encontrada) .carta-escena { animation-delay: 0.4s; }
+.carta:nth-child(3n):not(.volteada):not(.encontrada) .carta-escena { animation-delay: 0.9s; }
+.carta:nth-child(5n):not(.volteada):not(.encontrada) .carta-escena { animation-delay: 1.4s; }
+
+@media (hover: hover) and (pointer: fine) {
+    .carta:not(.volteada):not(.encontrada):hover {
+        translate: 0 -4px;
+    }
+    .carta:not(.volteada):not(.encontrada):hover .carta-giro {
+        transform: rotateY(-16deg) rotateX(8deg);
+    }
+    .carta:not(.volteada):not(.encontrada):hover .dorso {
+        border-color: var(--dorado);
+        box-shadow: 0 0 16px rgba(255, 200, 87, 0.65), 0 10px 20px rgba(20, 30, 60, 0.4);
+    }
+}
+
+/* ---------- acierto: la pareja brilla (la animación se ve completa) ---------- */
+
+.carta.brillando .carta-giro {
+    animation: pop-brillo 1.6s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+
+@keyframes pop-brillo {
+    0%   { scale: 1; rotate: 0deg; }
+    18%  { scale: 1.14; rotate: -3deg; }
+    38%  { scale: 1.1; rotate: 3deg; }
+    58%  { scale: 1.15; rotate: -2deg; }
+    100% { scale: 1.04; rotate: 0deg; }
+}
+
+.carta.brillando .frente {
+    border-color: #fff3c4;
+    animation: aura-dorada 1.6s ease-in-out both;
+}
+
+@keyframes aura-dorada {
+    0%, 100% { box-shadow: 0 0 0 rgba(255, 209, 102, 0); }
+    25%, 70% {
+        box-shadow:
+            0 0 14px 4px rgba(255, 232, 150, 0.95),
+            0 0 40px 14px rgba(255, 200, 87, 0.7);
+    }
+}
+
+.carta.brillando .frente::before {
+    animation: barrido-brillo 0.7s ease-in-out 0.1s 2 both;
+}
+
+@keyframes barrido-brillo {
+    0%   { transform: translateX(-170%) skewX(-18deg); opacity: 1; }
+    100% { transform: translateX(300%) skewX(-18deg); opacity: 1; }
+}
+
+.carta.destello .frente::before {
+    animation: barrido-brillo 0.8s ease-in-out var(--demora, 0ms) 1 both;
+}
+
+/* ---------- pareja encontrada ---------- */
+
+.carta.encontrada {
+    cursor: default;
+}
+
+.carta.encontrada .frente {
+    border: 3px solid var(--dorado);
+    box-shadow:
+        0 0 8px rgba(255, 209, 102, 0.95),
+        0 0 20px rgba(255, 209, 102, 0.42),
+        0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.carta.encontrada .frente::after {
+    content: "✓";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(16px, 2.4vw, 27px);
+    height: clamp(16px, 2.4vw, 27px);
+    color: var(--azul-profundo);
+    background: var(--dorado);
+    border-radius: 50%;
+    font-size: clamp(0.65rem, 1.4vw, 0.95rem);
+    font-weight: 900;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.carta.piezando .carta-giro {
+    animation: pop-pieza 0.95s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+@keyframes pop-pieza {
+    0%   { scale: 1; rotate: 0deg; }
+    30%  { scale: 1.2; rotate: 5deg; }
+    60%  { scale: 0.95; rotate: -3deg; }
+    100% { scale: 1; rotate: 0deg; }
+}
+
+/* ---------- error: se sacuden con las dos caras a la vista ---------- */
+
+.carta.error-animado {
+    animation: sacudir 0.38s ease-in-out 2;
+}
+
+@keyframes sacudir {
+    0%, 100% { translate: 0 0; rotate: 0deg; }
+    25% { translate: -7px 0; rotate: -2.5deg; }
+    75% { translate: 7px 0; rotate: 2.5deg; }
+}
+
+.carta.error-animado .frente {
+    border-color: #ff7b7b;
+    box-shadow: 0 0 16px rgba(255, 90, 90, 0.85);
+}
+
+/* ---------- rompecabezas completo ---------- */
+
+#tablero-memoria.ensamblado {
+    gap: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 0 0 4px var(--dorado), 0 0 45px rgba(255, 200, 87, 0.65);
+}
+
+#tablero-memoria.ensamblado .carta-escena {
+    animation: none;
+}
+
+#tablero-memoria.ensamblado .cara {
+    border-width: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#tablero-memoria.ensamblado .frente::after {
+    display: none;
+}
+
+/* ==========================================================
+   PORTADA: pedazos de las fotos al romperse
+========================================================== */
+
+.trozos {
+    position: absolute;
+    pointer-events: none;
+}
+
+.trozo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: none;
+    object-fit: cover;
+    background: #fffaf0;
+    will-change: transform;
+}
+
+/* ==========================================================
+   MÁS MOVIMIENTO
+========================================================== */
+
+header h1 {
+    animation: titulo-baila 4s ease-in-out infinite;
+}
+
+@keyframes titulo-baila {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-4px) rotate(-0.8deg); }
+    75% { transform: translateY(-2px) rotate(0.8deg); }
+}
+
+#movimientos,
+#parejas-encontradas {
+    display: inline-block;
+}
+
+.rebote {
+    animation: rebote 0.5s cubic-bezier(0.2, 1.8, 0.4, 1);
+}
+
+@keyframes rebote {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.8) rotate(-6deg); }
+    100% { transform: scale(1); }
+}
+
+#progreso-barra {
+    background-size: 200% 100%;
+    animation: corre-barra 3s linear infinite;
+}
+
+@keyframes corre-barra {
+    to { background-position: -200% 0; }
+}
+
+#reiniciar-juego:hover,
+#jugar-de-nuevo:hover,
+#continuar-juego:hover {
+    animation: meneo 0.5s ease-in-out;
+}
+
+@keyframes meneo {
+    0%, 100% { rotate: 0deg; }
+    30% { rotate: -3deg; }
+    70% { rotate: 3deg; }
+}
+
+#imagen-historia {
+    animation: foto-historia 0.7s cubic-bezier(0.2, 1.3, 0.4, 1) both;
+}
+
+@keyframes foto-historia {
+    from { opacity: 0; transform: scale(0.8) rotate(-3deg); }
+    to { opacity: 1; transform: none; }
+}
+
+.chispa {
+    position: fixed;
+    z-index: 9998;
+    pointer-events: none;
+    line-height: 1;
+}
+
+/* ---------- botón de sonido ---------- */
+
+#control-sonido {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 10050;
+    width: 50px;
+    height: 50px;
+    min-height: 0;
+    padding: 0;
+    font-size: 1.4rem;
+    border-radius: 50%;
+}
+
+#control-sonido[hidden] {
+    display: none;
+}
+
+/* ==========================================================
+   PANTALLA FINAL: felicitaciones, fuegos artificiales y serpentinas
+========================================================== */
+
+@keyframes aparecer-final {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#mensaje-final {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: radial-gradient(ellipse at 50% 25%, rgba(70, 58, 130, 0.82), rgba(8, 14, 38, 0.94));
+    animation: fondo-final 0.8s ease both;
+}
+
+#mensaje-final[hidden] {
+    display: none;
+}
+
+@keyframes fondo-final {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+body.final-abierto {
+    overflow: hidden;
+}
+
+#lienzo-fuegos,
+#lienzo-cintas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+#lienzo-fuegos { z-index: 0; }
+#lienzo-cintas { z-index: 2; }
+
+.final-tarjeta {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 700px);
+    margin: auto;
+    padding: 22px 22px 28px;
+    text-align: center;
+    border: 4px solid var(--dorado);
+    border-radius: 26px;
+    background: linear-gradient(145deg, rgba(38, 59, 112, 0.97), rgba(75, 65, 116, 0.95));
+    box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.55),
+        0 0 0 8px rgba(255, 250, 240, 0.1),
+        0 0 60px rgba(255, 200, 87, 0.35);
+    animation: tarjeta-final 0.95s cubic-bezier(0.2, 1.4, 0.4, 1) 0.2s both;
+}
+
+@keyframes tarjeta-final {
+    from { opacity: 0; transform: scale(0.55) translateY(50px) rotate(-3deg); }
+    to { opacity: 1; transform: none; }
+}
+
+#imagen-final {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 38vh;
+    max-height: 38dvh;
+    object-fit: contain;
+    margin: 0 auto 8px;
+    border: 4px solid #fffaf0;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 22px rgba(255, 209, 102, 0.55), 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.final-corona {
+    font-size: 2.8rem;
+    line-height: 1.2;
+    animation: tada 1.8s ease-in-out infinite;
+}
+
+@keyframes tada {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    10%, 20% { transform: scale(0.9) rotate(-5deg); }
+    30%, 50%, 70% { transform: scale(1.2) rotate(5deg); }
+    40%, 60% { transform: scale(1.2) rotate(-5deg); }
+    80% { transform: scale(1) rotate(0deg); }
+}
+
+#titulo-final {
+    margin-bottom: 10px;
+    color: var(--dorado);
+    font-size: clamp(2rem, 7vw, 3.4rem);
+    line-height: 1.15;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.25), 0 0 22px rgba(255, 209, 102, 0.5);
+}
+
+.letra {
+    display: inline-block;
+    white-space: pre;
+    animation: ola-letra 1.6s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * 0.07s);
+}
+
+@keyframes ola-letra {
+    0%, 60%, 100% { transform: translateY(0) scale(1); }
+    30% { transform: translateY(-12px) scale(1.12); }
+}
+
+.final-mensaje {
+    margin-bottom: 8px;
+    font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.final-detalle,
+.final-gracias {
+    margin-bottom: 10px;
+    line-height: 1.55;
+    color: #ffeec8;
+}
+
+.final-detalle strong {
+    color: var(--dorado);
+    font-size: 1.2em;
+}
+
+.final-tarjeta #jugar-de-nuevo {
+    margin-top: 6px;
+    min-height: 50px;
+    padding: 10px 26px;
+    font-size: 1rem;
+}
+
+/* ---------- celulares ---------- */
+
+@media (max-width: 600px) {
+    #tablero-memoria { --radio-carta: 5px; }
+
+    .cara { border-width: 1px; }
+    .carta.encontrada .frente { border-width: 2px; }
+    .carta.encontrada .frente::after { top: 2px; right: 2px; }
+
+    .carta:not(.volteada):not(.encontrada) .carta-escena {
+        animation-duration: 3.6s;
+    }
+
+    #control-sonido {
+        width: 44px;
+        height: 44px;
+        right: 10px;
+        bottom: 10px;
+        font-size: 1.2rem;
+    }
+
+    .final-tarjeta { padding: 14px 14px 20px; border-radius: 20px; }
+    #imagen-final { max-height: 30vh; max-height: 30dvh; }
+    .final-corona { font-size: 2.1rem; }
+}
+
+/* ---------- accesibilidad: solo se detienen los movimientos que se repiten sin parar ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .carta-escena,
+    header h1,
+    #progreso-barra,
+    .final-corona,
+    .letra {
+        animation: none !important;
+    }
+}
+
+
+/* ==========================================================
+   VERSIÓN 3: fondo beige, sin scroll al jugar, letra en negrita,
+   pie de página y pantalla final con la foto como protagonista
+========================================================== */
+
+:root {
+    --beige: #f2e4c9;
+    --beige-claro: #fbf3e2;
+    --tinta: #1f2f5e;
+}
+
+body {
+    font-weight: 700;
+    background: var(--beige);
+    background-image: none;
+}
+
+/* ---------- sin scroll mientras se juega ---------- */
+
+body.jugando {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 20px 6px;
+}
+
+body.jugando > main {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+}
+
+body.jugando > header,
+body.jugando > footer {
+    flex: 0 0 auto;
+}
+
+.zona-tablero {
+    flex: 1 1 auto;
+    min-height: 0;
+    container-type: size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* El tablero siempre entra completo en la pantalla (6 x 2 cartas de proporción 3:4). */
+#tablero-memoria {
+    --g: 10px;
+    gap: var(--g);
+    margin: 0;
+    width: min(100cqw, calc(2.25 * (100cqh - var(--g)) + 5 * var(--g)), 1100px);
+    transition: gap 0.7s ease, width 0.7s ease, box-shadow 0.6s ease;
+}
+
+#tablero-memoria.ensamblado {
+    width: min(100cqw, 225cqh, 1100px);
+}
+
+@media (max-width: 600px) {
+    #tablero-memoria { --g: 5px; }
+    body.jugando { padding: 6px 10px 4px; }
+}
+@media (max-width: 380px) {
+    #tablero-memoria { --g: 3px; }
+}
+@media (max-height: 700px) {
+    body.jugando > header p { display: none; }
+}
+
+/* ---------- colores sobre fondo beige ---------- */
+
+header h1 {
+    color: var(--tinta);
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.6);
+}
+
+header p {
+    color: #3b2f20;
+    font-weight: 800;
+    text-shadow: none;
+}
+
+#mensaje-dinamico {
+    color: var(--tinta);
+    font-weight: 900;
+    text-shadow: none;
+}
+
+#progreso-contenedor {
+    background: rgba(31, 47, 94, 0.18);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- pie de página (portada y juego) ---------- */
+
+.pie-juego {
+    padding: 6px 8px 2px;
+    text-align: center;
+    color: var(--tinta);
+    font-size: 0.85rem;
+    font-weight: 900;
+    line-height: 1.35;
+    text-shadow: none;
+}
+
+.pie-juego p { font-weight: 900; letter-spacing: 0.2px; }
+
+body:not(.jugando) > footer { display: none; }
+
+.pie-portada {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    z-index: 4;
+    width: max-content;
+    max-width: 94vw;
+    transform: translateX(-50%);
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: rgba(24, 43, 85, 0.88);
+    color: #fffaf0;
+    font-size: 0.85rem;
+    font-weight: 900;
+    line-height: 1.3;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .pie-juego, .pie-portada { font-size: 0.7rem; }
+    .pie-portada { border-radius: 14px; bottom: 6px; }
+}
+
+/* ---------- letra en negrita (se lee mejor) ---------- */
+
+.texto-portada, .sello-portada,
+#informacion-juego p, button {
+    font-weight: 900;
+}
+
+#contenido-historia {
+    font-weight: 700;
+    color: #26334d;
+}
+
+.fuente-historia {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #5b6578;
+}
+
+#imagen-historia { max-height: 200px; }
+@media (max-width: 600px) { #imagen-historia { max-height: 150px; } }
+
+/* ---------- aviso de movimientos agotados: flota en el centro, no empuja el tablero ---------- */
+
+#mensaje-limite {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    height: fit-content;
+    z-index: 8000;
+}
+
+/* ---------- pantalla final: beige, la foto es la protagonista ---------- */
+
+.pieza {
+    background-image: var(--img-final, url("imagenes/capitansarmiento.jpg"));
+}
+
+#mensaje-final {
+    background: radial-gradient(ellipse at 50% 30%, var(--beige-claro), #ead9b6 75%);
+}
+
+.final-tarjeta {
+    width: min(100%, 980px);
+    padding: 14px 18px 18px;
+    background: var(--beige-claro);
+    border: 4px solid #d9a93a;
+    box-shadow: 0 18px 50px rgba(80, 55, 20, 0.3), 0 0 0 8px rgba(255, 255, 255, 0.5);
+    color: var(--tinta);
+}
+
+#imagen-final {
+    width: auto;
+    max-width: 100%;
+    max-height: 56vh;
+    max-height: 56dvh;
+    margin: 0 auto 10px;
+    border: 6px solid #fff;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 14px 34px rgba(60, 40, 10, 0.35);
+    image-rendering: auto;
+}
+
+.final-corona { font-size: 1.8rem; margin: 0; }
+
+#titulo-final {
+    color: #b0121f;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: 4px;
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+.final-mensaje {
+    color: var(--tinta);
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    margin-bottom: 4px;
+}
+
+.final-detalle, .final-gracias {
+    color: #3b2f20;
+    margin-bottom: 6px;
+    font-weight: 800;
+}
+
+.final-detalle strong { color: #b0121f; }
+
+@media (max-width: 600px) {
+    #imagen-final { max-height: 40vh; max-height: 40dvh; border-width: 4px; }
+    .final-tarjeta { padding: 10px 10px 14px; }
+}
+
+/* ---------- ajustes finos ---------- */
+
+#modal-historia {
+    max-height: 92vh;
+    max-height: 92dvh;
+}
+
+#imagen-historia {
+    max-height: min(200px, 24vh);
+    max-height: min(200px, 24dvh);
+}
+
+#contenido-historia {
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+@media (max-width: 600px) {
+    /* el botón de sonido sube para no tapar el pie de página */
+    #control-sonido { bottom: 46px; }
+}
+
+/* ---------- ajustes v4: pie de la portada más abajo y tarjetas en tonos tierra ---------- */
+
+#pantalla-inicio { padding-bottom: 56px; }
+
+.pie-portada { bottom: 4px; }
+
+.dorso {
+    background:
+        radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.22), transparent 45%),
+        linear-gradient(145deg, #8a5a3b 0%, #a96f45 55%, #7d5136 100%);
+    color: #fbefd5;
+}
+
+.dorso::before { border-color: rgba(251, 239, 213, 0.55); }
+
+.cara { border-color: #e9cfa0; }
+
+@media (max-width: 600px) {
+    #pantalla-inicio { padding-bottom: 50px; }
+    .pie-portada { bottom: 3px; }
+}
